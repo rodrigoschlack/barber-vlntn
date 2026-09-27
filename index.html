@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Barber VLNTN | Cortes y tatuajes</title>
+  <!-- EDITAR: descripción que aparece en Google -->
+  <meta name="description" content="Barber VLNTN: cortes, degradados, diseños y tatuajes con hora agendada. Agenda por WhatsApp.">
+
+  <!-- Tipografías: Big Shoulders Display (títulos) y Archivo (textos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&family=Big+Shoulders+Display:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Colores y tipografías (cambia aquí y se actualiza toda la página) ===== */
+    :root {
+      --ink: #16202E;        /* fondo azul tinta */
+      --ink-2: #1F2B3C;      /* fondo de tarjetas y fotos */
+      --bone: #EEE7DB;       /* texto claro */
+      --steel: #9AA3AF;      /* texto secundario */
+      --pole-red: #C73A2F;   /* rojo de poste de barbería */
+      --pole-blue: #2F5D9E;  /* azul de poste de barbería */
+      --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+      --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+    html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--bone);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--bone); outline-offset: 3px; }
+
+    .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
+    section { padding: 4.5rem 0; }
+    h2 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(2.6rem, 9vw, 4.5rem);
+      line-height: 0.95;
+      margin: 0 0 1.5rem;
+    }
+    .lead { color: var(--steel); max-width: 38ch; margin: -0.75rem 0 2rem; }
+
+    /* ===== Botones ===== */
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 999px;
+      border: 2px solid transparent;
+    }
+    .btn-primary { background: var(--pole-red); color: var(--bone); }
+    .btn-primary:hover { background: #A92E25; }
+    .btn-ghost { border-color: currentColor; }
+    .btn-ghost:hover { background: rgba(238, 231, 219, 0.08); }
+
+    /* ===== Portada ===== */
+    .hero {
+      min-height: 88svh;
+      display: grid;
+      align-content: end;
+      padding: 3rem 0;
+    }
+    .brand { margin: 0; font-family: var(--display); font-weight: 900; line-height: 0.8; }
+    .brand-top { display: block; font-size: clamp(1.8rem, 7vw, 3rem); font-weight: 700; margin-bottom: 0.4rem; }
+    .brand-main { display: block; font-size: clamp(6rem, 30vw, 15rem); letter-spacing: -0.01em; }
+
+    /* La franja del poste de barbería: el elemento que distingue la página */
+    .pole {
+      height: 14px;
+      margin: 1.25rem 0 1.75rem;
+      background: repeating-linear-gradient(-45deg,
+        var(--pole-red) 0 14px, var(--bone) 14px 28px,
+        var(--pole-blue) 28px 42px, var(--bone) 42px 56px);
+      animation: spin 3s linear infinite;
+    }
+    @keyframes spin { to { background-position: 79.2px 0; } }
+
+    .hero p { font-size: 1.2rem; max-width: 30ch; margin: 0 0 2rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* ===== Galerías (las cajas son espacios para fotos) ===== */
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 0; padding: 0; list-style: none; }
+    .gallery figure { margin: 0; }
+    .gallery img, .ph { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; }
+    .ph {
+      display: grid; place-items: center;
+      background: var(--ink-2);
+      color: var(--steel);
+      font-size: 0.9rem;
+      border: 2px dashed rgba(154, 163, 175, 0.4);
+    }
+    .gallery figcaption { font-family: var(--display); font-weight: 700; font-size: 1.4rem; line-height: 1.1; color: var(--bone); margin-top: 0.6rem; }
+    .tattoo .gallery figcaption { color: var(--ink); }
+
+    /* ===== Precios con puntos guía, como pizarra de barbería ===== */
+    .prices { list-style: none; margin: 0; padding: 0; max-width: 40rem; }
+    .prices li { padding: 1rem 0; border-bottom: 1px solid rgba(154, 163, 175, 0.25); }
+    .price-line { display: flex; align-items: baseline; gap: 0.6rem; font-weight: 700; font-size: 1.15rem; }
+    .dots { flex: 1; border-bottom: 2px dotted var(--steel); transform: translateY(-0.3rem); }
+    .price-detail { display: flex; justify-content: space-between; gap: 1rem; color: var(--steel); font-size: 0.95rem; margin-top: 0.2rem; }
+    .price-detail a { color: var(--bone); font-weight: 500; white-space: nowrap; }
+
+    /* ===== Tatuajes: sección clara para diferenciarla ===== */
+    .tattoo { background: var(--bone); color: var(--ink); }
+    .tattoo .lead { color: #4A5361; }
+    .tattoo .ph { background: #E2D9CA; color: #5B6470; border-color: rgba(22, 32, 46, 0.25); }
+    .tattoo .gallery { margin-bottom: 2rem; }
+
+    /* ===== Cómo agendar, ubicación y horario ===== */
+    .info { display: grid; gap: 3rem; }
+    .steps { margin: 0; padding-left: 1.4rem; }
+    .steps li { margin-bottom: 0.75rem; padding-left: 0.3rem; }
+    .steps li::marker { font-family: var(--display); font-weight: 900; color: var(--pole-red); }
+    .note { color: var(--steel); max-width: 42ch; }
+    .hours { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.5rem; }
+    .hours dt { font-weight: 700; }
+    .hours dd { margin: 0; color: var(--steel); }
+    h3 { font-family: var(--display); font-size: 2rem; margin: 0 0 1rem; line-height: 1; }
+
+    /* ===== Pie de página ===== */
+    footer { padding: 3rem 0 4rem; border-top: 1px solid rgba(154, 163, 175, 0.25); color: var(--steel); font-size: 0.95rem; }
+    footer a { color: var(--bone); }
+
+    /* ===== Barra fija para agendar (solo en celular) ===== */
+    .sticky-cta {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+      background: rgba(22, 32, 46, 0.94);
+      border-top: 1px solid rgba(154, 163, 175, 0.25);
+    }
+    .sticky-cta .btn { display: block; text-align: center; }
+    body { padding-bottom: 5rem; }
+
+    /* ===== Pantallas grandes ===== */
+    @media (min-width: 720px) {
+      .gallery { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .info { grid-template-columns: 1fr 1fr; }
+      .sticky-cta { display: none; }
+      body { padding-bottom: 0; }
+    }
+
+    /* Respeta a quienes desactivan animaciones */
+    @media (prefers-reduced-motion: reduce) {
+      .pole { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== PORTADA ===== -->
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="brand">
+        <span class="brand-top">Barber</span>
+        <span class="brand-main">VLNTN</span>
+      </h1>
+      <div class="pole" aria-hidden="true"></div>
+      <!-- EDITAR: reemplaza [Comuna] -->
+      <p>Cortes, degradados y diseños con hora agendada en la comuna de Macul. Ahora también tatuajes.</p>
+      <div class="actions">
+        <a class="btn btn-primary" data-wa="Hola, quiero agendar una hora">Agendar por WhatsApp</a>
+        <a class="btn btn-ghost" href="#precios">Ver precios</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== CORTES ===== -->
+    <section id="cortes">
+      <div class="wrap">
+        <h2>Cortes</h2>
+        <p class="lead">Algunos trabajos recientes. Más en Instagram.</p>
+        
+        <ul class="gallery">
+          <li><figure><img src="fotos/corte1.jpeg" alt="Corte platinado con degradado" loading="lazy"><figcaption>Mullet con degradado</figcaption></figure></li>
+          <li><figure><img src="fotos/corte2.jpeg" alt="Corte con degradado bajo" loading="lazy"><figcaption>Degradado bajo</figcaption></figure></li>
+          <li><figure><img src="fotos/corte3.jpeg" alt="Corte con degradado y líneas" loading="lazy"><figcaption>Degradado con líneas</figcaption></figure></li>
+          <li><figure><img src="fotos/corte4.jpeg" alt="Corte texturizado" loading="lazy"><figcaption>Platinado con degradado</figcaption></figure></li>
+          <li><figure><img src="fotos/corte5.jpeg" alt="Corte con degradado medio" loading="lazy"><figcaption>Degradado medio</figcaption></figure></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== PRECIOS ===== -->
+    <section id="precios">
+      <div class="wrap">
+        <h2>Precios</h2>
+        <ul class="prices">
+          <li>
+            <div class="price-line"><span>Corte de pelo</span><span class="dots"></span><span>$8.000</span></div>
+            <div class="price-detail"><span>Tijera o máquina, con terminación a navaja.</span><a data-wa="Hola, quiero agendar un corte de pelo">Agendar</a></div>
+          </li>
+          <li>
+            <div class="price-line"><span>Corte con degradado</span><span class="dots"></span><span>$10.000</span></div>
+            <div class="price-detail"><span>Bajo, medio o alto.</span><a data-wa="Hola, quiero agendar un corte con degradado">Agendar</a></div>
+          </li>
+          <li>
+            <div class="price-line"><span>Corte y barba</span><span class="dots"></span><span>$12.000</span></div>
+            <div class="price-detail"><span>Corte completo y perfilado de barba.</span><a data-wa="Hola, quiero agendar corte y barba">Agendar</a></div>
+          </li>
+          <li>
+            <div class="price-line"><span>Perfilado de barba</span><span class="dots"></span><span>$5.000</span></div>
+            <div class="price-detail"><span>Contorno y rebaje.</span><a data-wa="Hola, quiero agendar un perfilado de barba">Agendar</a></div>
+          </li>
+          <li>
+            <div class="price-line"><span>Diseño con líneas</span><span class="dots"></span><span>+$2.000</span></div>
+            <div class="price-detail"><span>Se suma a cualquier corte.</span><a data-wa="Hola, quiero agendar un corte con diseño">Agendar</a></div>
+          </li>
+          <li>
+            <div class="price-line"><span>Decoloración o platinado</span><span class="dots"></span><span>Desde $25.000</span></div>
+            <div class="price-detail"><span>El valor depende del largo y el tono. Consulta antes.</span><a data-wa="Hola, quiero consultar por una decoloración">Consultar</a></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== TATUAJES ===== -->
+    <section id="tatuajes" class="tattoo">
+      <div class="wrap">
+        <h2>Tatuajes</h2>
+        <p class="lead">Estoy comenzando en el tatuaje, con diseños pequeños y medianos. Mándame tu idea, el tamaño y la zona del cuerpo, y te cotizo.</p>
+        <ul class="gallery">
+          <li><figure><img src="fotos/tatuaje1.jpeg" alt="Tatuaje 1" loading="lazy"></figure></li>
+          <li><figure><img src="fotos/tatuaje2.jpeg" alt="Tatuaje 2" loading="lazy"></figure></li>
+          <li><figure><img src="fotos/tatuaje3.jpeg" alt="Tatuaje 3" loading="lazy"></figure></li>
+        </ul>
+        <a class="btn btn-primary" data-wa="Hola, quiero cotizar un tatuaje">Cotizar tatuaje</a>
+      </div>
+    </section>
+
+    <!-- ===== CÓMO AGENDAR, UBICACIÓN Y HORARIO ===== -->
+    <section id="agendar">
+      <div class="wrap info">
+        <div>
+          <h3>Cómo agendar</h3>
+          <ol class="steps">
+            <li>Elige tu servicio y escríbeme por WhatsApp.</li>
+            <li>Te confirmo el día y la hora disponibles.</li>
+            <li>Te envío la dirección para que llegues.</li>
+          </ol>
+          
+          <p class="note">Atiendo en mi casa, en [Sector], [Comuna]. Comparto la dirección exacta al confirmar tu hora.</p>
+        </div>
+        <div>
+          <h3>Horario</h3>
+          <!-- EDITAR: horario real -->
+          <dl class="hours">
+            <dt>Lunes a viernes</dt><dd>16:00 a 21:00</dd>
+            <dt>Sábado</dt><dd>10:00 a 19:00</dd>
+            <dt>Domingo</dt><dd>Cerrado</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Barber VLNTN. Sígueme en <a href="https://www.instagram.com/barber.vlntn/" target="_blank" rel="noopener noreferrer">Instagram @barber.vlntn</a></p>
+      <p>© <span id="year"></span> Barber VLNTN</p>
+    </div>
+  </footer>
+
+  <!-- Botón fijo en celulares -->
+  <div class="sticky-cta">
+    <a class="btn btn-primary" data-wa="Hola, quiero agendar una hora">Agendar por WhatsApp</a>
+  </div>
+
+  <script>
+    // EDITAR: número de WhatsApp con código de país, sin + ni espacios (ej: 56912345678)
+    const WHATSAPP = "56900000000";
+
+    // Convierte cada enlace con data-wa en un link de WhatsApp con el mensaje ya escrito
+    document.querySelectorAll("[data-wa]").forEach(function (link) {
+      const mensaje = link.dataset.wa;
+      link.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensaje);
+      link.target = "_blank";
+      link.rel = "noopener noreferrer"; // buena práctica de seguridad al abrir pestañas nuevas
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
