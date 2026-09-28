@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Barber VLNTN | Cortes y tatuajes</title>
   <!-- EDITAR: descripción que aparece en Google -->
-  <meta name="description" content="Barber VLNTN: cortes, degradados, diseños y tatuajes con hora agendada. Agenda por WhatsApp.">
+  <meta name="description" content="Barber VLNTN: cortes, degradados, diseños y tatuajes con hora agendada. Agenda por Instagram.">
 
   <!-- Tipografías: Big Shoulders Display (títulos) y Archivo (textos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +94,7 @@
     /* ===== Galerías (las cajas son espacios para fotos) ===== */
     .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 0; padding: 0; list-style: none; }
     .gallery figure { margin: 0; }
-    .gallery img, .ph { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; }
+    .gallery img, .gallery video, .ph { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; }
     .ph {
       display: grid; place-items: center;
       background: var(--ink-2);
@@ -172,7 +172,7 @@
       <!-- EDITAR: reemplaza [Comuna] -->
       <p>Cortes, degradados y diseños con hora agendada en la comuna de Macul. Ahora también tatuajes.</p>
       <div class="actions">
-        <a class="btn btn-primary" data-wa="Hola, quiero agendar una hora">Agendar por WhatsApp</a>
+        <a class="btn btn-primary" data-wa="Hola, quiero agendar una hora">Agendar por Instagram</a>
         <a class="btn btn-ghost" href="#precios">Ver precios</a>
       </div>
     </div>
@@ -191,6 +191,9 @@
           <li><figure><img src="fotos/corte3.jpeg" alt="Corte con degradado y líneas" loading="lazy"><figcaption>Degradado con líneas</figcaption></figure></li>
           <li><figure><img src="fotos/corte4.jpeg" alt="Corte texturizado" loading="lazy"><figcaption>Platinado con degradado</figcaption></figure></li>
           <li><figure><img src="fotos/corte5.jpeg" alt="Corte con degradado medio" loading="lazy"><figcaption>Degradado medio</figcaption></figure></li>
+          <li><figure><img src="fotos/corte6.jpg" alt="Descripción del corte" loading="lazy"><figcaption>Diseño con lineas</figcaption></figure></li>
+          <li><figure><img src="fotos/corte7.jpg" alt="Descripción del corte" loading="lazy"><figcaption>Degradado con líneas</figcaption></figure></li>
+          <li><figure><video src="videos/corte_video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Video de un corte terminado"></video><figcaption>Degradado medio con líneas</figcaption></figure></li>
         </ul>
       </div>
     </section>
@@ -209,7 +212,7 @@
             <div class="price-detail"><span>Bajo, medio o alto.</span><a data-wa="Hola, quiero agendar un corte con degradado">Agendar</a></div>
           </li>
           <li>
-            <div class="price-line"><span>Corte y barba</span><span class="dots"></span><span>$12.000</span></div>
+            <div class="price-line"><span>Corte y barba</span><span class="dots"></span><span>$15.000</span></div>
             <div class="price-detail"><span>Corte completo y perfilado de barba.</span><a data-wa="Hola, quiero agendar corte y barba">Agendar</a></div>
           </li>
           <li>
@@ -237,6 +240,7 @@
           <li><figure><img src="fotos/tatuaje1.jpeg" alt="Tatuaje 1" loading="lazy"></figure></li>
           <li><figure><img src="fotos/tatuaje2.jpeg" alt="Tatuaje 2" loading="lazy"></figure></li>
           <li><figure><img src="fotos/tatuaje3.jpeg" alt="Tatuaje 3" loading="lazy"></figure></li>
+          <li><figure><video src="videos/tatuaje_video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Video de un tatuaje"></video></figure></li>
         </ul>
         <a class="btn btn-primary" data-wa="Hola, quiero cotizar un tatuaje">Cotizar tatuaje</a>
       </div>
@@ -248,22 +252,14 @@
         <div>
           <h3>Cómo agendar</h3>
           <ol class="steps">
-            <li>Elige tu servicio y escríbeme por WhatsApp.</li>
+            <li>Elige tu servicio y escríbeme por Instagram.</li>
             <li>Te confirmo el día y la hora disponibles.</li>
             <li>Te envío la dirección para que llegues.</li>
           </ol>
           
-          <p class="note">Atiendo en mi casa, en [Sector], [Comuna]. Comparto la dirección exacta al confirmar tu hora.</p>
+          <p class="note">No tengo horario fijo: atiendo con hora agendada según disponibilidad. Atiendo en mi casa, en [Sector], Macul, y comparto la dirección exacta al confirmar tu hora.</p>
         </div>
-        <div>
-          <h3>Horario</h3>
-          <!-- EDITAR: horario real -->
-          <dl class="hours">
-            <dt>Lunes a viernes</dt><dd>16:00 a 21:00</dd>
-            <dt>Sábado</dt><dd>10:00 a 19:00</dd>
-            <dt>Domingo</dt><dd>Cerrado</dd>
-          </dl>
-        </div>
+        
       </div>
     </section>
   </main>
@@ -277,22 +273,21 @@
 
   <!-- Botón fijo en celulares -->
   <div class="sticky-cta">
-    <a class="btn btn-primary" data-wa="Hola, quiero agendar una hora">Agendar por WhatsApp</a>
+    <a class="btn btn-primary" data-wa="Hola, quiero agendar una hora">Agendar por Instagram</a>
   </div>
 
   <script>
-    // EDITAR: número de WhatsApp con código de país, sin + ni espacios (ej: 56912345678)
-    const WHATSAPP = "56900000000";
+  // EDITAR: nombre de usuario de Instagram (sin @)
+  const INSTAGRAM = "barber.vlntn";
 
-    // Convierte cada enlace con data-wa en un link de WhatsApp con el mensaje ya escrito
-    document.querySelectorAll("[data-wa]").forEach(function (link) {
-      const mensaje = link.dataset.wa;
-      link.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensaje);
-      link.target = "_blank";
-      link.rel = "noopener noreferrer"; // buena práctica de seguridad al abrir pestañas nuevas
-    });
+  // Convierte cada botón de agendar en un link al chat de Instagram
+  document.querySelectorAll("[data-wa]").forEach(function (link) {
+    link.href = "https://ig.me/m/" + INSTAGRAM;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
